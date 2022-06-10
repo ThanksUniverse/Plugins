@@ -20,22 +20,29 @@ module.exports = class RenameEverything {
 		//! TOTAL TIME
 		setInterval(function () {
 			seconds = seconds + 1;
-			time = "Seconds: " + seconds;
+
+         time = seconds + " Seconds ";
 
 			if (seconds == 60) {
 				seconds = 0;
 				minutes = minutes + 1;
-				time = "Minutes: " + minutes + "Seconds: " + seconds;
 			}
-
 			if (minutes == 60) {
-				minutes = 0;
+            minutes = 0;
 				hours = hours + 1;
-				time = "Hours: " + hours + "Minutes: " + minutes + "Seconds: " + seconds;
 			}
+         if (minutes >= 1) {
+            time = minutes + " Minutes and " +  seconds + " Seconds";
+         }  
+         if (hours >= 1) {
+            time = hours + " Hours " + minutes + " Minutes and " + seconds + " Seconds ";
+         }
 		}, 1000);
 
 		function renameEverything() {
+         console.log(seconds)
+         console.log(minutes)
+         console.log(hours)
 			console.time("ExecutionTime: ");
 			executed = executed + 1;
 
@@ -137,7 +144,7 @@ module.exports = class RenameEverything {
 			var ExecutedTimesCss = "color: #aff; font-size: 18px";
 			var TotalTimeCss = "color: #badaea; font-size: 18px";
 
-			/* showToast(content, options = {}) */
+			 //?/* showToast(content, options = {}) */
 
 			console.log(GeneratedName + GeneratedID + CooldownShow + TotalTime + ExecutedTimes, GenerateNameCss, GeneratedIDCss, CooldownShowCss, ExecutedTimesCss, TotalTimeCss);
 			console.timeEnd("ExecutionTime: ");
