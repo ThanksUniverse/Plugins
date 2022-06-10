@@ -6,14 +6,12 @@
  * @description Change everything in the Discord client
  * @updateUrl https://raw.githubusercontent.com/ThanksUniverse/Plugins/dev/RenameEverything/RenameEverything.plugin.js?token=GHSAT0AAAAAABULNPNXFS4XYTRGBPIDVFV4YVC3FPQ
  */
-var c = 0;
-var seconds = 0;
-var minutes = 0;
-var hours = 0;
-var executed = 0;
-var cooldown = 10000;
-/* var time = hours + ":" + minutes + ":" + seconds  */
-
+var seconds = 0,
+minutes = 0,
+hours = 0,
+executed = 0,
+cooldown = 1e4, // 10000
+time = 0;
 module.exports = class RenameEverything {
 	load() {}
 	start() {
@@ -22,21 +20,23 @@ module.exports = class RenameEverything {
 		//! TOTAL TIME
 		setInterval(function () {
 			seconds = seconds + 1;
+			time = "Seconds: " + seconds;
 
 			if (seconds == 60) {
 				seconds = 0;
 				minutes = minutes + 1;
+				time = "Minutes: " + minutes + "Seconds: " + seconds;
 			}
 
 			if (minutes == 60) {
 				minutes = 0;
 				hours = hours + 1;
+				time = "Hours: " + hours + "Minutes: " + minutes + "Seconds: " + seconds;
 			}
-         time = hours + ":" + minutes + ":" + seconds 
 		}, 1000);
-      
+
 		function renameEverything() {
-         console.time("ExecutionTime: ");
+			console.time("ExecutionTime: ");
 			executed = executed + 1;
 
 			//! Generate random number + than 1000
@@ -125,88 +125,22 @@ module.exports = class RenameEverything {
 
 			//! Console all the changes made by the script
 
-         var GeneratedName = "%c" + "[Generated Name]: " + newUser + " [Previous Name]: " + oldUser + "\n";
-         var GeneratedID = "%c" + "[Generated ID]: " + userID + " [Previous ID]: " + previousUserId + "\n";
-         var CooldownShow = "%c" +  "It will be randomized again in: " + "c" + cooldown / 1000 +  " seconds" + "\n";
-         var ExecutedTimes = "%c" + "Executed: " + executed + " times" + "\n";
-         var Seconds = "%c" + "Total Time: " + seconds + " seconds" + "\n";
-         
+			var GeneratedName = "%c" + "[Generated Name]: " + newUser + " [Previous Name]: " + oldUser + "\n";
+			var GeneratedID = "%c" + "[Generated ID]: " + userID + " [Previous ID]: " + previousUserId + "\n";
+			var CooldownShow = "%c" + "It will be randomized again in: " + cooldown / 1000 + " seconds" + "\n";
+			var TotalTime = "%c" + "Total Time: " + time + "\n";
+			var ExecutedTimes = "%c" + "Executed: " + executed + " times";
 
-         var GenerateNameCss = "color: #faf; font-size: 18px;"
-         var GeneratedIDCss = "color: #f00; font-size: 18px"
-         var CooldownShowCss = "color: #afa; font-size: 18px"
-         var ExecutedTimesCss = "color: #aff; font-size: 18px"
-         var SecondsCss = "color: #badaea; font-size: 18px"
+			var GenerateNameCss = "color: #faf; font-size: 18px;";
+			var GeneratedIDCss = "color: #f00; font-size: 18px";
+			var CooldownShowCss = "color: #afa; font-size: 18px";
+			var ExecutedTimesCss = "color: #aff; font-size: 18px";
+			var TotalTimeCss = "color: #badaea; font-size: 18px";
 
-         /* showToast(content, options = {}) */
+			/* showToast(content, options = {}) */
 
-			if (minutes < 1) {
-				var results = console.log(GeneratedName + GeneratedID + CooldownShow + ExecutedTimes + Seconds, GenerateNameCss, GeneratedIDCss, CooldownShowCss, ExecutedTimesCss, SecondsCss);
-			}
-			if (minutes >= 1) {
-				results = null;
-				var results2 = console.log(
-					"%c [Generated Name]: " +
-						newUser +
-						" [Previous Name]: " +
-						oldUser +
-						"\n%c [Generated ID]: " +
-						userID +
-						" [Previous ID]: " +
-						previousUserId +
-						"\n%c It will be randomized again in: " +
-						"%c" +
-						cooldown / 1000 +
-						" seconds" +
-						"\n%c Executed: " +
-						executed +
-						" times ||" +
-						"|| Total Time: " +
-						minutes +
-						" Minutes and " +
-						seconds +
-						" seconds",
-					"color: #faf; font-size: 18px",
-					"color #f00; font-size: 18px",
-					"color: #afa; font-size: 18px",
-					"color: #aff; font-size: 18px",
-					"color: #badaea; font-size: 18px"
-				);
-			}
-			if (hours >= 1) {
-				results2 = null;
-				var results3 = console.log(
-					"%c [Generated Name]: " +
-						newUser +
-						" [Previous Name]: " +
-						oldUser +
-						"\n%c [Generated ID]: " +
-						userID +
-						" [Previous ID]: " +
-						previousUserId +
-						"\n%c It will be randomized again in: " +
-						"%c" +
-						cooldown / 1000 +
-						" seconds" +
-						"\n%c [Executed: " +
-						executed +
-						" times ||" +
-						"|| Total Time: " +
-						"Hours: " +
-						hours +
-						" Minutes: " +
-						minutes +
-						" Seconds: " +
-						seconds +
-						"]",
-					"color: #faf; font-size: 18px",
-					"color #f00; font-size: 18px",
-					"color: #afa; font-size: 18px",
-					"color: #aff; font-size: 18px",
-					"color: #badaea; font-size: 18px"
-				);
-			}
-         console.timeEnd("ExecutionTime: ");
+			console.log(GeneratedName + GeneratedID + CooldownShow + TotalTime + ExecutedTimes, GenerateNameCss, GeneratedIDCss, CooldownShowCss, ExecutedTimesCss, TotalTimeCss);
+			console.timeEnd("ExecutionTime: ");
 		}
 		function setGlobal() {
 			clearInterval(tempo);
@@ -217,7 +151,7 @@ module.exports = class RenameEverything {
 	}
 	stop() {
 		clearInterval(tempo);
-		console.log("%c Stopping Script... [It executed " + executed + " Times]" + "\n%c Elapsed Time: " + time, "color: #ffeaaa; font-size: 20px", 'color: #00ffac; font-size: 18px');
+		console.log("%c Stopping Script... [It executed " + executed + " Times]" + "\n%c Elapsed Time: " + time, "color: #ffeaaa; font-size: 20px", "color: #00ffac; font-size: 18px");
 		return;
 	}
 };
