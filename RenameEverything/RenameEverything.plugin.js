@@ -2,28 +2,40 @@
  * @name RenameEverything
  * @author Pedro
  * @authorId 296461607549272064
- * @version 0.0.1
+ * @version 0.0.2
  * @description Change everything in the Discord client
  * @updateUrl https://raw.githubusercontent.com/ThanksUniverse/Plugins/dev/RenameEverything/RenameEverything.plugin.js?token=GHSAT0AAAAAABULNPNXFS4XYTRGBPIDVFV4YVC3FPQ
  */
-var a = 0;
-var b = 0;
-var c = b -59;
-var i = 0;
+var c = 0
+var seconds = 0
+var minutes = 0
+var hours = 0
+var executed = 0;
 var cooldown = 10000;
 
 module.exports = class RenameEverything {
 	load() {}
 	start() {
+      console.log('%c Starting Script... [' + cooldown / 1000 + ' Seconds]', "color: #ffaa00; font-size: 20px")
 		globalThis.tempo = setInterval(renameEverything, cooldown);
 		//! TOTAL TIME
 		setInterval(function () {
-			a = a + 1;
-         b = b + 1;
+			seconds = seconds + 1
+
+         if ( seconds == 60) {
+            seconds = 0
+            minutes = minutes + 1
+         }
+
+         if ( minutes == 60 ) {
+            minutes = 0
+            hours = hours + 1
+         }
+            
 		}, 1000);
 
 		function renameEverything() {
-			i = i + 1;
+			executed = executed + 1;
 
 			//! Generate random number + than 1000
 
@@ -105,7 +117,8 @@ module.exports = class RenameEverything {
 
 			//! Console all the changes made by the script
 
-			var results = console.log(
+			if (minutes < 1) {
+            var results = console.log(
 				"%c [Generated Name]: " +
 					newUser +
 					" [Previous Name]: " +
@@ -119,10 +132,10 @@ module.exports = class RenameEverything {
 					cooldown / 1000 +
 					" seconds" +
 					"\n%c Executed: " +
-					i +
+					executed +
 					" times ||" +
 					"|| Total Time: " +
-					a +
+					seconds +
 					" seconds",
 				"color: #faf; font-size: 18px",
 				"color #f00; font-size: 18px",
@@ -130,8 +143,10 @@ module.exports = class RenameEverything {
 				"color: #aff; font-size: 18px",
 				"color: #badaea; font-size: 18px"
 			);
-
-         var results2 = console.log(
+         }
+          if ( minutes >= 1 ) {
+            results = null
+            var results2 = console.log(
 				"%c [Generated Name]: " +
 					newUser +
 					" [Previous Name]: " +
@@ -145,10 +160,10 @@ module.exports = class RenameEverything {
 					cooldown / 1000 +
 					" seconds" +
 					"\n%c Executed: " +
-					i +
+					executed +
 					" times ||" +
-					"|| Total Time: " + c + " Minutes and " +
-					a +
+					"|| Total Time: " + minutes + " Minutes and " +
+					seconds +
 					" seconds",
 				"color: #faf; font-size: 18px",
 				"color #f00; font-size: 18px",
@@ -156,6 +171,34 @@ module.exports = class RenameEverything {
 				"color: #aff; font-size: 18px",
 				"color: #badaea; font-size: 18px"
 			);
+      }
+       if ( hours >= 1 ) {
+         results2 = null
+         var results3 = console.log(
+				"%c [Generated Name]: " +
+					newUser +
+					" [Previous Name]: " +
+					oldUser +
+					"\n%c [Generated ID]: " +
+					userID +
+					" [Previous ID]: " +
+					previousUserId +
+					"\n%c It will be randomized again in: " +
+					"%c" +
+					cooldown / 1000 +
+					" seconds" +
+					"\n%c [Executed: " +
+					executed +
+					" times ||" +
+					"|| Total Time: " + "Hours: " + hours + " Minutes: " + minutes + " Seconds: " +
+					seconds + "]",
+				"color: #faf; font-size: 18px",
+				"color #f00; font-size: 18px",
+				"color: #afa; font-size: 18px",
+				"color: #aff; font-size: 18px",
+				"color: #badaea; font-size: 18px"
+			);
+      }
 		}
 		function setGlobal() {
 			clearInterval(tempo);
@@ -165,6 +208,7 @@ module.exports = class RenameEverything {
 		}
 	}
    stop() {
+      console.log('%c Stopping Script... [It executed ' + executed + ' Times]', "color: #ffeaaa; font-size: 20px")
       clearInterval(tempo);
       return;
    }
