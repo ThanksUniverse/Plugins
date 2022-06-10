@@ -12,7 +12,7 @@ var minutes = 0;
 var hours = 0;
 var executed = 0;
 var cooldown = 10000;
-var time = hours + ":" + minutes + ":" + seconds 
+/* var time = hours + ":" + minutes + ":" + seconds  */
 
 module.exports = class RenameEverything {
 	load() {}
@@ -125,18 +125,23 @@ module.exports = class RenameEverything {
 
 			//! Console all the changes made by the script
 
-         var GeneratedName = "[Generated Name]: " +            newUser +            " [Previous Name]: " +            oldUser 
-         var GeneratedID = ' \n%c [Generated ID]: " +            userID +            " [Previous ID]: " +            previousUserId'
+         var GeneratedName = "%c" + "[Generated Name]: " + newUser + " [Previous Name]: " + oldUser + "\n";
+         var GeneratedID = "%c" + "[Generated ID]: " + userID + " [Previous ID]: " + previousUserId + "\n";
+         var CooldownShow = "%c" +  "It will be randomized again in: " + "c" + cooldown / 1000 +  " seconds" + "\n";
+         var ExecutedTimes = "%c" + "Executed: " + executed + " times" + "\n";
+         var Seconds = "%c" + "Total Time: " + seconds + " seconds" + "\n";
          
-         
-        /*  +            "\n%c It will be randomized again in: " +            "%c" +            cooldown / 1000 +            " seconds" +            "\n%c Executed: " +            executed +            " times ||" +            "|| Total Time: " +            seconds +            " seconds" */
 
-         var contentCss = "color: #faf; font-size: 18px;"
+         var GenerateNameCss = "color: #faf; font-size: 18px;"
+         var GeneratedIDCss = "color: #f00; font-size: 18px"
+         var CooldownShowCss = "color: #afa; font-size: 18px"
+         var ExecutedTimesCss = "color: #aff; font-size: 18px"
+         var SecondsCss = "color: #badaea; font-size: 18px"
 
          /* showToast(content, options = {}) */
 
 			if (minutes < 1) {
-				var results = console.log(GeneratedName, contentCss +  GeneratedID);
+				var results = console.log(GeneratedName + GeneratedID + CooldownShow + ExecutedTimes + Seconds, GenerateNameCss, GeneratedIDCss, CooldownShowCss, ExecutedTimesCss, SecondsCss);
 			}
 			if (minutes >= 1) {
 				results = null;
