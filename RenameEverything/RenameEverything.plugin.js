@@ -2,7 +2,7 @@
  * @name RenameEverything
  * @author Pedro
  * @authorId 296461607549272064
- * @version 0.0.4
+ * @version 0.0.5
  * @description Change everything in the Discord client
  * @updateUrl https://raw.githubusercontent.com/ThanksUniverse/Plugins/dev/RenameEverything/RenameEverything.plugin.js?token=GHSAT0AAAAAABULNPNXFS4XYTRGBPIDVFV4YVC3FPQ
  */
@@ -10,7 +10,7 @@ var seconds = 0,
 minutes = 0,
 hours = 0,
 executed = 0,
-cooldown = 1e4, // 10000
+cooldown = 10000, // 1e4
 time = 0;
 module.exports = class RenameEverything {
 	load() {}
