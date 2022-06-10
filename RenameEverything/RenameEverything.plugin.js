@@ -2,7 +2,7 @@
  * @name RenameEverything
  * @author Pedro
  * @authorId 296461607549272064
- * @version 0.0.2
+ * @version 0.0.4
  * @description Change everything in the Discord client
  * @updateUrl https://raw.githubusercontent.com/ThanksUniverse/Plugins/dev/RenameEverything/RenameEverything.plugin.js?token=GHSAT0AAAAAABULNPNXFS4XYTRGBPIDVFV4YVC3FPQ
  */
