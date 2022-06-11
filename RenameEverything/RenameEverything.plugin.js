@@ -12,6 +12,9 @@ hours = 0,
 executed = 0,
 cooldown = 10000, // 1e4
 time = 0;
+
+//TODO: Adicionar toast
+
 module.exports = class RenameEverything {
 	load() {}
 	start() {
@@ -143,9 +146,9 @@ module.exports = class RenameEverything {
 			var CooldownShowCss = "color: #afa; font-size: 18px";
 			var ExecutedTimesCss = "color: #aff; font-size: 18px";
 			var TotalTimeCss = "color: #badaea; font-size: 18px";
-
-			 //?/* showToast(content, options = {}) */
-
+/* 
+			showToast('Pedro', options = {success})
+ */
 			console.log(GeneratedName + GeneratedID + CooldownShow + TotalTime + ExecutedTimes, GenerateNameCss, GeneratedIDCss, CooldownShowCss, ExecutedTimesCss, TotalTimeCss);
 			console.timeEnd("ExecutionTime: ");
 		}
