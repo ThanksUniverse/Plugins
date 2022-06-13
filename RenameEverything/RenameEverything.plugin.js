@@ -2,55 +2,73 @@
  * @name RenameEverything
  * @author Pedro
  * @authorId 296461607549272064
- * @version 0.0.5
+ * @version 0.0.6
  * @description Change everything in the Discord client
  * @updateUrl https://raw.githubusercontent.com/ThanksUniverse/Plugins/dev/RenameEverything/RenameEverything.plugin.js?token=GHSAT0AAAAAABULNPNXFS4XYTRGBPIDVFV4YVC3FPQ
  */
 var seconds = 0,
-minutes = 0,
-hours = 0,
-executed = 0,
-cooldown = 10000, // 1e4
-time = 0;
+	minutes = 0,
+	hours = 0,
+	days = 0,
+	executed = 0,
+	cooldown = 10000, // 1e4
+	lose = 1,
+	updateTime = 0,
+	totalTime = 0,
+	tempo = 0,
+	time = 0;
 
 //TODO: Adicionar toast
 
 module.exports = class RenameEverything {
 	load() {}
 	start() {
-		console.log("%c Starting Script... [" + cooldown / 1000 + " Seconds]", "color: #ffaa00; font-size: 20px");
-		globalThis.tempo = setInterval(renameEverything, cooldown);
+		console.log("%c Starting Script in... [" + cooldown / 1000 + " Seconds]", "color: #ffaa00; font-size: 20px");
+		var tempo = setInterval(renameEverything, cooldown);
 		//! TOTAL TIME
 		setInterval(function () {
+			updateTime = updateTime + 1;
+			totalTime = totalTime + 1;
 			seconds = seconds + 1;
-
-         time = seconds + " Seconds ";
-
+			time = seconds + " Seconds ";
 			if (seconds == 60) {
 				seconds = 0;
 				minutes = minutes + 1;
 			}
 			if (minutes == 60) {
-            minutes = 0;
+				minutes = 0;
 				hours = hours + 1;
 			}
-         if (minutes >= 1) {
-            time = minutes + " Minutes and " +  seconds + " Seconds";
-         }  
-         if (hours >= 1) {
-            time = hours + " Hours " + minutes + " Minutes and " + seconds + " Seconds ";
-         }
+			if (hours == 24) {
+				hours = 0;
+				days = days + 1;
+			}
+
+			if (minutes >= 1) {
+				time = minutes + " Minutes and " + seconds + " Seconds";
+			}
+
+			if (hours >= 1) {
+				time = hours + " Hours " + minutes + " Minutes and " + seconds + " Seconds ";
+			}
+
+			if (days >= 1) {
+				time = days + " Days " + hours + " Hours " + minutes + " Minutes and " + seconds + " Seconds ";
+			}
 		}, 1000);
 
 		function renameEverything() {
-         console.log(seconds)
-         console.log(minutes)
-         console.log(hours)
+			console.log(seconds);
+			console.log(minutes);
+			console.log(hours);
+			console.log(time);
 			console.time("ExecutionTime: ");
 			executed = executed + 1;
+			totalTime = totalTime + 1 - executed;
+			console.log(totalTime)
+			console.log(executed)
 
 			//! Generate random number + than 1000
-
 			var previousUserId = 0;
 			var valueof = 0;
 			let generateNumber = Math.floor(1000 + Math.random() * 8999); //! Generate number recipe
@@ -75,8 +93,6 @@ module.exports = class RenameEverything {
 				"#app-mount > div.appDevToolsWrapper-1QxdQf > div > div.app-3xd6d0 > div > div.layers-OrUESM.layers-1YQhyW > div > div.container-1eFtFS > div > div > div.sidebar-1tnWFu > nav > div.scroller-WSmht3.thin-31rlnD.scrollerBase-_bVAAt.fade-1R6FHN > ul > li:nth-child(4) > div"
 			);
 			var tatamessage = document.querySelector("#message-content-984090251637178418");
-
-			// ? Fazer com que mostre a mensagem antiga e a nova
 
 			if (typeof tatamessage != "undefined" && tatamessage != null) {
 				if (tata.hasAttribute("class", "interactiveSelected-29CP8y")) {
@@ -104,7 +120,7 @@ module.exports = class RenameEverything {
 				"#app-mount > div.appDevToolsWrapper-1QxdQf > div > div.app-3xd6d0 > div > div.layers-OrUESM.layers-1YQhyW > div > div.container-1eFtFS > div > div > div.sidebar-1tnWFu > section > div.container-YkUktl > div.nameTag-sc-gpq.canCopy-IgTwyV > div.text-xs-normal-3SiVjE.subtext-2HDqJ7"
 			);
 
-			var randomError = Math.floor(400 + Math.random() * 99);
+			var randomError = Math.floor(403 + Math.random() * 2);
 
 			if (newUser != null || newUserw != null) {
 				var oldUser = newUser.textContent;
@@ -112,12 +128,6 @@ module.exports = class RenameEverything {
 			} else {
 				newUser = "Loading...";
 				newUserw = "Loading...";
-			}
-
-			if (randomError == 404) {
-				var text = "[Interval Time]:";
-				var css = "color: red; font-size: 100px";
-				console.log("%c" + text, css, +cooldown);
 			}
 
 			//! Button to increase cooldown on time
@@ -134,28 +144,43 @@ module.exports = class RenameEverything {
 			};
 
 			//! Console all the changes made by the script
+			globalThis.GeneratedName = "%c" + "[Generated Name]: " + newUser + " [Previous Name]: " + oldUser + "\n";
+			globalThis.GeneratedID = "%c" + "[Generated ID]: " + userID + " [Previous ID]: " + previousUserId + "\n";
+			globalThis.CooldownShow = "%c" + "It will be randomized again in: " + cooldown / 1000 + " seconds" + "\n";
+			globalThis.TotalTime = "%c" + "Total Time: " + time + "\n";
+			globalThis.ExecutedTimes = "%c" + "Executed: " + executed + " times" + "\n";
+			globalThis.Error = "%c" + "You lost, the cooldown time has been increased to: " + cooldown / 1000+ ' seconds' + "\n";
+			globalThis.ErrorCounter = "%c" + "You already lost the game: " + lose + " times" + "\n";
+			globalThis.TimeToUpdate = "%c" + "It took: " + updateTime + " seconds to update" + " || You already waited: " + totalTime + " seconds for it to update";
 
-			var GeneratedName = "%c" + "[Generated Name]: " + newUser + " [Previous Name]: " + oldUser + "\n";
-			var GeneratedID = "%c" + "[Generated ID]: " + userID + " [Previous ID]: " + previousUserId + "\n";
-			var CooldownShow = "%c" + "It will be randomized again in: " + cooldown / 1000 + " seconds" + "\n";
-			var TotalTime = "%c" + "Total Time: " + time + "\n";
-			var ExecutedTimes = "%c" + "Executed: " + executed + " times";
+			globalThis.GenerateNameCss = "color: #faf; font-size: 18px;";
+			globalThis.GeneratedIDCss = "color: #fa0; font-size: 18px";
+			globalThis.CooldownShowCss = "color: #afa; font-size: 18px";
+			globalThis.ExecutedTimesCss = "color: #aff; font-size: 18px";
+			globalThis.TotalTimeCss = "color: #badaea; font-size: 18px";
+			globalThis.ErrorCss = "color: #fa00ac; font-size: 18px;";
+			globalThis.ErrorCounterCss = "color: #f00; font-size: 18px";
+			globalThis.UpdateTimeCss = "color: #ffff0a; font-size: 18px";
 
-			var GenerateNameCss = "color: #faf; font-size: 18px;";
-			var GeneratedIDCss = "color: #f00; font-size: 18px";
-			var CooldownShowCss = "color: #afa; font-size: 18px";
-			var ExecutedTimesCss = "color: #aff; font-size: 18px";
-			var TotalTimeCss = "color: #badaea; font-size: 18px";
-/* 
+			if (randomError == 404) {
+				setGlobal()
+			} else {
+				console.log(GeneratedName + GeneratedID + CooldownShow + TotalTime + ExecutedTimes + TimeToUpdate, GenerateNameCss, GeneratedIDCss, CooldownShowCss, ExecutedTimesCss, TotalTimeCss, UpdateTimeCss);
+			}
+
+			/* 
 			showToast('Pedro', options = {success})
- */
-			console.log(GeneratedName + GeneratedID + CooldownShow + TotalTime + ExecutedTimes, GenerateNameCss, GeneratedIDCss, CooldownShowCss, ExecutedTimesCss, TotalTimeCss);
+ */		updateTime = 0
 			console.timeEnd("ExecutionTime: ");
 		}
 		function setGlobal() {
 			clearInterval(tempo);
+			CooldownShow = "%c" + "It was being randomized every: " + cooldown / 1000 + " seconds";
 			cooldown = cooldown + 10000;
-			console.log("%c Cooldown: " + cooldown / 1000 + " Seconds", "color: #fff; font-size: 50px;");
+			var CooldownShow0 = " || Now it will be " + cooldown / 1000 + " seconds" + "\n";
+			Error = "%c" + "You lost, the cooldown time has been increased to: " + cooldown /1000+ " seconds" + "\n";
+			lose = lose + 1;
+			console.log(GeneratedName + GeneratedID + CooldownShow + CooldownShow0 + TotalTime + ExecutedTimes + Error + ErrorCounter + TimeToUpdate, GenerateNameCss, GeneratedIDCss, CooldownShowCss, ExecutedTimesCss, TotalTimeCss, ErrorCss, ErrorCounterCss, UpdateTimeCss);
 			tempo = setInterval(renameEverything, cooldown);
 		}
 	}
