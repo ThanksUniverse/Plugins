@@ -14,6 +14,7 @@ var seconds = 0,
 	cooldown = 10000, // 1e4
 	lose = 1,
 	updateTime = 0,
+	infTimer = 0,
 	totalTime = 0,
 	tempo = 0,
 	time = 0;
@@ -28,7 +29,7 @@ module.exports = class RenameEverything {
 		//! TOTAL TIME
 		setInterval(function () {
 			updateTime = updateTime + 1;
-			totalTime = totalTime + 1;
+			infTimer = infTimer + 1;
 			seconds = seconds + 1;
 			time = seconds + " Seconds ";
 			if (seconds == 60) {
@@ -64,7 +65,6 @@ module.exports = class RenameEverything {
 			console.log(time);
 			console.time("ExecutionTime: ");
 			executed = executed + 1;
-			totalTime = totalTime + 1 - executed;
 			console.log(totalTime)
 			console.log(executed)
 
@@ -143,6 +143,7 @@ module.exports = class RenameEverything {
 				setGlobal();
 			};
 
+			totalTime = infTimer - executed;
 			//! Console all the changes made by the script
 			globalThis.GeneratedName = "%c" + "[Generated Name]: " + newUser + " [Previous Name]: " + oldUser + "\n";
 			globalThis.GeneratedID = "%c" + "[Generated ID]: " + userID + " [Previous ID]: " + previousUserId + "\n";
