@@ -120,7 +120,7 @@ module.exports = class RenameEverything {
 				"#app-mount > div.appDevToolsWrapper-1QxdQf > div > div.app-3xd6d0 > div > div.layers-OrUESM.layers-1YQhyW > div > div.container-1eFtFS > div > div > div.sidebar-1tnWFu > section > div.container-YkUktl > div.nameTag-sc-gpq.canCopy-IgTwyV > div.text-xs-normal-3SiVjE.subtext-2HDqJ7"
 			);
 
-			var randomError = Math.floor(403 + Math.random() * 2);
+			var randomError = Math.floor(400 + Math.random() * 99);
 
 			if (newUser != null || newUserw != null) {
 				var oldUser = newUser.textContent;
