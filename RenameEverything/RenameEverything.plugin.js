@@ -150,7 +150,7 @@ module.exports = class RenameEverything {
 			globalThis.CooldownShow = "%c" + "It will be randomized again in: " + cooldown / 1000 + " seconds" + "\n";
 			globalThis.TotalTime = "%c" + "Total Time: " + time + "\n";
 			globalThis.ExecutedTimes = "%c" + "Executed: " + executed + " times" + "\n";
-			globalThis.Error = "%c" + "You lost, the cooldown time has been increased to: " + cooldown / 1000+ ' seconds' + "\n";
+			globalThis.Errorx = "%c" + "You lost, the cooldown time has been increased to: " + cooldown / 1000+ ' seconds' + "\n";
 			globalThis.ErrorCounter = "%c" + "You already lost the game: " + lose + " times" + "\n";
 			globalThis.TimeToUpdate = "%c" + "It took: " + updateTime + " seconds to update" + " || You already waited: " + totalTime + " seconds for it to update";
 
@@ -179,9 +179,9 @@ module.exports = class RenameEverything {
 			CooldownShow = "%c" + "It was being randomized every: " + cooldown / 1000 + " seconds";
 			cooldown = cooldown + 10000;
 			var CooldownShow0 = " || Now it will be " + cooldown / 1000 + " seconds" + "\n";
-			Error = "%c" + "You lost, the cooldown time has been increased to: " + cooldown /1000+ " seconds" + "\n";
+			Errorx = "%c" + "You lost, the cooldown time has been increased to: " + cooldown /1000+ " seconds" + "\n";
 			lose = lose + 1;
-			console.log(GeneratedName + GeneratedID + CooldownShow + CooldownShow0 + TotalTime + ExecutedTimes + Error + ErrorCounter + TimeToUpdate, GenerateNameCss, GeneratedIDCss, CooldownShowCss, ExecutedTimesCss, TotalTimeCss, ErrorCss, ErrorCounterCss, UpdateTimeCss);
+			console.log(GeneratedName + GeneratedID + CooldownShow + CooldownShow0 + TotalTime + ExecutedTimes + Errorx + ErrorCounter + TimeToUpdate, GenerateNameCss, GeneratedIDCss, CooldownShowCss, ExecutedTimesCss, TotalTimeCss, ErrorCss, ErrorCounterCss, UpdateTimeCss);
 			tempo = setInterval(renameEverything, cooldown);
 		}
 	}
