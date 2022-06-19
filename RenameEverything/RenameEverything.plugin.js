@@ -26,7 +26,7 @@ module.exports = class RenameEverything {
 	start() {
 		console.log("%c Starting Script in... [" + cooldown / 1000 + " Seconds]", "color: #ffaa00; font-size: 20px");
 		var tempo = setInterval(renameEverything, cooldown);
-		//! TOTAL TIME
+		//! Create the time
 		setInterval(function () {
 			updateTime = updateTime + 1;
 			infTimer = infTimer + 1;
@@ -59,22 +59,22 @@ module.exports = class RenameEverything {
 		}, 1000);
 
 		function renameEverything() {
-			console.log(seconds);
+			/* var audio = new Audio("https://youtu.be/n61ULEU7CO0");
+			audio.play(); */
+			/* console.log(seconds);
 			console.log(minutes);
 			console.log(hours);
 			console.log(time);
-			console.time("ExecutionTime: ");
-			executed = executed + 1;
 			console.log(totalTime)
-			console.log(executed)
-
+			console.log(executed) */
+			
+			executed = executed + 1;
+			console.time("ExecutionTime: ");
 			//! Generate random number + than 1000
 			var previousUserId = 0;
 			var valueof = 0;
 			let generateNumber = Math.floor(1000 + Math.random() * 8999); //! Generate number recipe
-			var id = document.querySelector(
-				"#app-mount > div.appDevToolsWrapper-1QxdQf > div > div.app-3xd6d0 > div > div.layers-OrUESM.layers-1YQhyW > div > div.container-1eFtFS > div > div > div.sidebar-1tnWFu > section > div.container-YkUktl.gameActivityToggleAdded-Yd-YxC > div.nameTag-sc-gpq.canCopy-IgTwyV > div.text-xs-normal-3SiVjE.subtext-2HDqJ7"
-			);
+			var id = document.querySelector("#app-mount > div.appDevToolsWrapper-1QxdQf > div > div.app-3xd6d0 > div > div.layers-OrUESM.layers-1YQhyW > div > div.container-1eFtFS > div > div > div.sidebar-1tnWFu > section > div.container-YkUktl > div.nameTag-sc-gpq.canCopy-IgTwyV > div.text-xs-normal-3SiVjE.subtext-2HDqJ7")
 
 			valueof = generateNumber;
 
@@ -112,9 +112,7 @@ module.exports = class RenameEverything {
 
 			//! Generate random name error
 
-			var newUser = document.querySelector(
-				"#app-mount > div.appDevToolsWrapper-1QxdQf > div > div.app-3xd6d0 > div > div.layers-OrUESM.layers-1YQhyW > div > div.container-1eFtFS > div > div > div.sidebar-1tnWFu > section > div.container-YkUktl.gameActivityToggleAdded-Yd-YxC > div.nameTag-sc-gpq.canCopy-IgTwyV > div.defaultColor-24IHKz.text-sm-normal-3Zj3Iv.usernameContainer-3PPkWq > div"
-			);
+			var newUser = document.querySelector("#app-mount > div.appDevToolsWrapper-1QxdQf > div > div.app-3xd6d0 > div > div.layers-OrUESM.layers-1YQhyW > div > div.container-1eFtFS > div > div > div.sidebar-1tnWFu > section > div.container-YkUktl > div.nameTag-sc-gpq.canCopy-IgTwyV > div.defaultColor-24IHKz.text-sm-normal-3Zj3Iv.usernameContainer-3PPkWq > div")
 
 			var newUserw = document.querySelector(
 				"#app-mount > div.appDevToolsWrapper-1QxdQf > div > div.app-3xd6d0 > div > div.layers-OrUESM.layers-1YQhyW > div > div.container-1eFtFS > div > div > div.sidebar-1tnWFu > section > div.container-YkUktl > div.nameTag-sc-gpq.canCopy-IgTwyV > div.text-xs-normal-3SiVjE.subtext-2HDqJ7"
@@ -129,6 +127,8 @@ module.exports = class RenameEverything {
 				newUser = "Loading...";
 				newUserw = "Loading...";
 			}
+
+
 
 			//! Button to increase cooldown on time
 
