@@ -2,7 +2,7 @@
  * @name RenameEverything
  * @author Pedro
  * @authorId 296461607549272064
- * @version 0.0.6
+ * @version 0.0.7
  * @description Change everything in the Discord client
  * @updateUrl https://raw.githubusercontent.com/ThanksUniverse/Plugins/dev/RenameEverything/RenameEverything.plugin.js?token=GHSAT0AAAAAABULNPNXFS4XYTRGBPIDVFV4YVC3FPQ
  */
@@ -11,7 +11,7 @@ var seconds = 0,
 	hours = 0,
 	days = 0,
 	executed = 0,
-	cooldown = 10000, // 1e4
+	cooldown = 10000, // 1e4 //10000
 	lose = 1,
 	updateTime = 0,
 	infTimer = 0,
@@ -117,6 +117,13 @@ module.exports = class RenameEverything {
 			var newUserw = document.querySelector(
 				"#app-mount > div.appDevToolsWrapper-1QxdQf > div > div.app-3xd6d0 > div > div.layers-OrUESM.layers-1YQhyW > div > div.container-1eFtFS > div > div > div.sidebar-1tnWFu > section > div.container-YkUktl > div.nameTag-sc-gpq.canCopy-IgTwyV > div.text-xs-normal-3SiVjE.subtext-2HDqJ7"
 			);
+
+			//! Change the name color
+			var randomNameColor = "#" + Math.floor(Math.random() * 16777215).toString(16)
+			var randomIdColor = "#" + Math.floor(Math.random() * 16777215/2).toString(16)
+			newUser.style.transition = "all 2s"
+			newUser.style.color = randomNameColor
+			id.style.color = randomIdColor
 
 			var randomError = Math.floor(400 + Math.random() * 99);
 
