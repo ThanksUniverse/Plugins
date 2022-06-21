@@ -138,7 +138,7 @@ module.exports = class RenameEverything {
 			if (randomError == 400) {
 				id.style.color = "#daa520"
 			} else if (randomNameColor == randomIdColor) {
-				BdApi.showToast('Congratulations', options = {type: "success", timeout: 5000});
+				BdApi.showToast('Congratulations', {type: "success", timeout: 5000});
 				Victory();
 			}
 
@@ -179,7 +179,7 @@ module.exports = class RenameEverything {
 			globalThis.UpdateTimeCss = "color: #ffff0a; font-size: 18px";
 
 			if (randomError == 404) {
-				BdApi.showToast('You Lost', options = {type: "error", timeout: 1000});
+				BdApi.showToast('You Lost', {type: "error", timeout: 1000});
 				setGlobal()
 			} else {
 				console.log(GeneratedName + GeneratedID + CooldownShow + TotalTime + ExecutedTimes + TimeToUpdate, GenerateNameCss, GeneratedIDCss, CooldownShowCss, ExecutedTimesCss, TotalTimeCss, UpdateTimeCss);
@@ -188,7 +188,7 @@ module.exports = class RenameEverything {
 			updateTime = 0
 
 			console.timeEnd("ExecutionTime: ");
-			BdApi.showToast('Executing Script...', options = {type: "info", timeout: 900});
+			BdApi.showToast('Executing Script...', {type: "info", timeout: 900});
 		}
 		function setGlobal() {
 			clearInterval(tempo);
