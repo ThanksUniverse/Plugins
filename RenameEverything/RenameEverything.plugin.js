@@ -57,7 +57,6 @@ module.exports = class RenameEverything {
 				time = days + " Days " + hours + " Hours " + minutes + " Minutes and " + seconds + " Seconds ";
 			}
 		}, 1000);
-
 		function renameEverything() {
 			/* var audio = new Audio("https://youtu.be/n61ULEU7CO0");
 			audio.play(); */
@@ -171,6 +170,7 @@ module.exports = class RenameEverything {
 			globalThis.UpdateTimeCss = "color: #ffff0a; font-size: 18px";
 
 			if (randomError == 404) {
+				BdApi.showToast('You Lost', options = {type: "error", timeout: 1000});
 				setGlobal()
 			} else {
 				console.log(GeneratedName + GeneratedID + CooldownShow + TotalTime + ExecutedTimes + TimeToUpdate, GenerateNameCss, GeneratedIDCss, CooldownShowCss, ExecutedTimesCss, TotalTimeCss, UpdateTimeCss);
@@ -180,6 +180,7 @@ module.exports = class RenameEverything {
 			showToast('Pedro', options = {success})
  */		updateTime = 0
 			console.timeEnd("ExecutionTime: ");
+			BdApi.showToast('Executing Script...', options = {type: "error", timeout: 900});
 		}
 		function setGlobal() {
 			clearInterval(tempo);
