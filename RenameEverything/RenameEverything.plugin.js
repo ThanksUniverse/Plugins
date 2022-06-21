@@ -139,6 +139,8 @@ module.exports = class RenameEverything {
 				id.style.color = "#daa520"
 			} else if (randomNameColor == randomIdColor) {
 				BdApi.showToast('Congratulations', {type: "success", timeout: 5000});
+				id.style.color = "#daa520"
+				newUser.style.color = "#daa520"
 				Victory();
 			}
 
