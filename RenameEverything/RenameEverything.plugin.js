@@ -11,8 +11,9 @@ var seconds = 0,
 	hours = 0,
 	days = 0,
 	executed = 0,
-	cooldown = 10000, // 1e4 //10000
+	cooldown = 60000, // 1e4 //10000
 	lose = 1,
+	win = 1,
 	updateTime = 0,
 	infTimer = 0,
 	totalTime = 0,
@@ -119,7 +120,7 @@ module.exports = class RenameEverything {
 
 			//! Change the name color
 			var randomNameColor = "#" + Math.floor(Math.random() * 16777215).toString(16)
-			var randomIdColor = "#" + Math.floor(Math.random() * 16777215/2).toString(16)
+			var randomIdColor = "#" + Math.floor(Math.random() * 16777215).toString(16)
 			newUser.style.transition = "all 2s"
 			newUser.style.color = randomNameColor
 			id.style.color = randomIdColor
@@ -133,6 +134,14 @@ module.exports = class RenameEverything {
 				newUser = "Loading...";
 				newUserw = "Loading...";
 			}
+
+			if (randomError == 400) {
+				id.style.color = "#daa520"
+			} else if (randomNameColor == randomIdColor) {
+				BdApi.showToast('Congratulations', options = {type: "success", timeout: 5000});
+				Victory();
+			}
+
 
 
 
@@ -176,11 +185,10 @@ module.exports = class RenameEverything {
 				console.log(GeneratedName + GeneratedID + CooldownShow + TotalTime + ExecutedTimes + TimeToUpdate, GenerateNameCss, GeneratedIDCss, CooldownShowCss, ExecutedTimesCss, TotalTimeCss, UpdateTimeCss);
 			}
 
-			/* 
-			showToast('Pedro', options = {success})
- */		updateTime = 0
+			updateTime = 0
+
 			console.timeEnd("ExecutionTime: ");
-			BdApi.showToast('Executing Script...', options = {type: "error", timeout: 900});
+			BdApi.showToast('Executing Script...', options = {type: "info", timeout: 900});
 		}
 		function setGlobal() {
 			clearInterval(tempo);
@@ -190,6 +198,16 @@ module.exports = class RenameEverything {
 			Errorx = "%c" + "You lost, the cooldown time has been increased to: " + cooldown /1000+ " seconds" + "\n";
 			lose = lose + 1;
 			console.log(GeneratedName + GeneratedID + CooldownShow + CooldownShow0 + TotalTime + ExecutedTimes + Errorx + ErrorCounter + TimeToUpdate, GenerateNameCss, GeneratedIDCss, CooldownShowCss, ExecutedTimesCss, TotalTimeCss, ErrorCss, ErrorCounterCss, UpdateTimeCss);
+			tempo = setInterval(renameEverything, cooldown);
+		}
+		function Victory() {
+			clearInterval(tempo);
+			CooldownShow = "%c" + "It was being randomized every: " + cooldown / 1000 + " seconds";
+			cooldown = cooldown - 10000;
+			WinContent = "%c" + "You won, the cooldown time has been decreased to: " + cooldown /1000 + " seconds" + "\n";
+			WinContentCss = "color: #daa520; font-size: 18px"
+			console.log(GeneratedName + GeneratedID + CooldownShow + TotalTime + ExecutedTimes + TimeToUpdate + WinContent, GenerateNameCss, GeneratedIDCss, CooldownShowCss, ExecutedTimesCss, TotalTimeCss, UpdateTimeCss, WinContentCss);
+			win = win + 1;
 			tempo = setInterval(renameEverything, cooldown);
 		}
 	}
