@@ -24,8 +24,8 @@ time = 0;
 module.exports = class RenameEverything {
 	load() {}
 	start() {
-		//TODO: Make the informations when u click on home appear in a Toast instead of showing in the console
 		//TODO: Create a Update message
+		//TODO: Make a way to edit the sound inside the client
 		globalThis.UserNames = [];
 		function audioComponent() {
 			const audiow = document.createElement("audio");
