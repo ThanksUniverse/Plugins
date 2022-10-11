@@ -11,9 +11,9 @@ var seconds = 0,
 	hours = 0,
 	days = 0,
 	executed = 0,
-	cooldown = 60000, // 1e4 //10000 
-	lose = 1,
-	win = 1,
+	cooldown = 60000, // 1e4 //10000
+	lose = 0,
+	win = 0,
 	updateTime = 0,
 	infTimer = 0,
 	totalTime = 0,
@@ -24,7 +24,7 @@ time = 0;
 module.exports = class RenameEverything {
 	load() {}
 	start() {
-		//TODO: Create a Update message
+		//TODO: Create a Update message a
 		//TODO: Make a way to edit the sound inside the client
 		globalThis.UserNames = [];
 		function audioComponent() {
@@ -37,7 +37,7 @@ module.exports = class RenameEverything {
 			sourcs.setAttribute("src", "https://cdn.discordapp.com/attachments/423879458047655946/990334517262831616/x.mp3");
 			return audiow;
 		}
-		
+
 		function randomizeBackground() {
 			const bgs = ["https://i.imgur.com/i1ClkBg.png", "https://images2.alphacoders.com/742/thumb-1920-742320.png", "https://images.alphacoders.com/112/112131.jpg", "https://images3.alphacoders.com/704/704387.png", "https://images4.alphacoders.com/973/973967.jpg"];
 			var randomize = Math.floor(Math.random() * bgs.length);
@@ -48,17 +48,16 @@ module.exports = class RenameEverything {
 		//? randomizeBackground(); */
 		document.body.appendChild(audioComponent());
 
-		
 		console.log("%c[RenameEverything]: Starting Script in... [" + cooldown / 1000 + " Seconds]", "color: #ff4000; font-size: 16px");
 		var tempo = setInterval(renameEverything, cooldown);
 		//! Create the time
 		globalThis.timeSeter = setInterval(function timeSettings() {
 			var SeeIfOpen = document.querySelector("#app-mount > div.appDevToolsWrapper-1QxdQf > div > div:nth-child(3) > div.layer-1Ixpg3 > div > div");
-			
+
 			var OpacityBackground = document.querySelector("#app-mount > div.appDevToolsWrapper-1QxdQf > div > div:nth-child(3) > div.backdrop-2ByYRN.withLayer-2VVmpp");
-			
+
 			var NameForm = document.querySelector("#app-mount > div.appDevToolsWrapper-1QxdQf > div > div:nth-child(3) > div.layer-1Ixpg3 > div > div > form");
-			
+
 			var UserTextName = document.querySelector("#app-mount > div.appDevToolsWrapper-1QxdQf > div > div:nth-child(3) > div.layer-1Ixpg3 > div > div > form > div.content-2hZxGK.content-18dVld.thin-31rlnD.scrollerBase-_bVAAt > div:nth-child(1) > h5");
 			if (typeof NameForm != "undefined" && NameForm != null && UserTextName != "undefined" && UserTextName != null) {
 				OpacityBackground.style.opacity = "0.35";
@@ -67,28 +66,28 @@ module.exports = class RenameEverything {
 				var promptBody = document.querySelector("#app-mount > div.appDevToolsWrapper-1QxdQf > div > div:nth-child(3) > div.layer-1Ixpg3 > div > div");
 				var promptFooter = document.querySelector(
 					"#app-mount > div.appDevToolsWrapper-1QxdQf > div > div:nth-child(3) > div.layer-1Ixpg3 > div > div > form > div.flex-2S1XBF.flex-3BkGQD.horizontalReverse-60Katr.horizontalReverse-2QssvL.flex-3BkGQD.directionRowReverse-HZatnx.justifyStart-2Mwniq.alignStretch-Uwowzr.noWrap-hBpHBz.footer-31IekZ.footerSeparator-VzAYwb"
-					);
-					promptBody.style.backgroundColor = RColor;
-					promptBody.style.transition = "all 2s";
-					if (typeof promptFooter != "undefined" && promptFooter != null) {
-						promptFooter.style.backgroundColor = RColor;
-						promptFooter.style.transition = "all 2s";
-					}
+				);
+				promptBody.style.backgroundColor = RColor;
+				promptBody.style.transition = "all 2s";
+				if (typeof promptFooter != "undefined" && promptFooter != null) {
+					promptFooter.style.backgroundColor = RColor;
+					promptFooter.style.transition = "all 2s";
 				}
-				
-				if (typeof SeeIfOpen != "undefined" && SeeIfOpen != null) {
-					var UserDialog = document.querySelector("#app-mount > div.appDevToolsWrapper-1QxdQf > div > div:nth-child(3) > div.layer-1Ixpg3 > div > div").children[0];
-					var UserName = UserDialog.children[0];
-					var UserText = UserDialog.children[1];
-					var NameForm = document.querySelector("#app-mount > div.appDevToolsWrapper-1QxdQf > div > div:nth-child(3) > div.layer-1Ixpg3 > div > div > form");
-					var IdLabel = document.querySelector("#app-mount > div.appDevToolsWrapper-1QxdQf > div > div:nth-child(3) > div.layer-1Ixpg3 > div > div > form > div.content-2hZxGK.content-18dVld.thin-31rlnD.scrollerBase-_bVAAt > div:nth-child(1) > div > div.inputWrapper-1YNMmM.multiInputLast-35zVz0");
-					if (typeof UserName != "undefined" && UserName != null && typeof UserText != "undefined" && UserText != null && typeof NameForm != "undefined" && NameForm != null && typeof IdLabel != "undefined" && IdLabel != null) {
-						var UserNameColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
-						var UserTextColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
-						UserName.textContent = "Your new Godness name";
-						UserName.style.color = UserNameColor;
-						UserName.style.transition = "all 1s";
-						UserText.textContent = "Choose the name and give me your password :)";
+			}
+
+			if (typeof SeeIfOpen != "undefined" && SeeIfOpen != null) {
+				var UserDialog = document.querySelector("#app-mount > div.appDevToolsWrapper-1QxdQf > div > div:nth-child(3) > div.layer-1Ixpg3 > div > div").children[0];
+				var UserName = UserDialog.children[0];
+				var UserText = UserDialog.children[1];
+				var NameForm = document.querySelector("#app-mount > div.appDevToolsWrapper-1QxdQf > div > div:nth-child(3) > div.layer-1Ixpg3 > div > div > form");
+				var IdLabel = document.querySelector("#app-mount > div.appDevToolsWrapper-1QxdQf > div > div:nth-child(3) > div.layer-1Ixpg3 > div > div > form > div.content-2hZxGK.content-18dVld.thin-31rlnD.scrollerBase-_bVAAt > div:nth-child(1) > div > div.inputWrapper-1YNMmM.multiInputLast-35zVz0");
+				if (typeof UserName != "undefined" && UserName != null && typeof UserText != "undefined" && UserText != null && typeof NameForm != "undefined" && NameForm != null && typeof IdLabel != "undefined" && IdLabel != null) {
+					var UserNameColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
+					var UserTextColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
+					UserName.textContent = "Your new Godness name";
+					UserName.style.color = UserNameColor;
+					UserName.style.transition = "all 1s";
+					UserText.textContent = "Choose the name and give me your password :)";
 					UserText.style.color = UserTextColor;
 					UserText.style.transition = "all 1s";
 				}
@@ -109,19 +108,40 @@ module.exports = class RenameEverything {
 				hours = 0;
 				days = days + 1;
 			}
-			
+
 			if (minutes >= 1) {
 				time = minutes + " Minutes and " + seconds + " Seconds";
 			}
-			
+
 			if (hours >= 1) {
 				time = hours + " Hours " + minutes + " Minutes and " + seconds + " Seconds ";
 			}
-			
+
 			if (days >= 1) {
 				time = days + " Days " + hours + " Hours " + minutes + " Minutes and " + seconds + " Seconds ";
 			}
 		}, 1000);
+
+		document.addEventListener("keydown", function (event) {
+			if (event.ctrlKey && event.key === "u") {
+				var page = document.querySelector("body")
+				page.style.display = "none";
+			}
+		});
+
+		document.addEventListener("keydown", function (event) {
+			if (event.ctrlKey && event.key === "j") {
+				var page = document.querySelector("body")
+				console.log('Keys')
+				page.style.display = "cool";
+			}
+		});
+		document.addEventListener("keydown", function (event) {
+			var audio = document.getElementById("audio");
+			if (event.ctrlKey && event.key === "o") {
+				audio.remove();
+			}
+		});
 		function renameEverything() {
 			/* var audio = new Audio("https://youtu.be/n61ULEU7CO0");
 			audio.play(); */
@@ -283,7 +303,7 @@ module.exports = class RenameEverything {
 			var HomeButtonCss = "color: rgb(225, 225, 225); font-size: 18px";
 			home = home + 1;
 			console.log(TotalTime + ExecutedTimes + HomeButton, TotalTimeCss, ExecutedTimesCss, HomeButtonCss);
-			var ToastInfo = "The Script already executed: " + executed + " times" + "\n" + "You already pressed the Home Button: " + home + " times" + "\n" + "You already lost: " + lose + " times" + "\n" + "Total Time Executed: " + time
+			var ToastInfo = "The Script already executed: " + executed + " times" + "\n" + "You already pressed the Home Button: " + home + " times" + "\n" + "You already lost: " + lose + " times" + "\n" + "Total Time Executed: " + time;
 			BdApi.showToast(ToastInfo, { type: "success", timeout: 8000 });
 		}
 		function Victory() {
